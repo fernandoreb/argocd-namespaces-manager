@@ -4,6 +4,17 @@ metadata:
   name: argo-app
   namespace: devops
 spec:
+
+  helmDefaults:
+    tillerless: true
+    tillerNamespace: platform
+    atomic: false
+    verify: false
+    wait: true
+    timeout: 1200
+    recreatePods: true
+    force: true
+
   syncPolicy:
     automated: {}
   destination:
