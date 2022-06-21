@@ -66,7 +66,7 @@ Common labels
 */}}
 {{- define "argoteste.labels" -}}
 helm.sh/resource-policy: keep
-argocd.argoproj.io/managed-by: devops
+argocd.argoproj.io/managed-by: openshift-gitops
 {{- end -}}
 
 {{/*
