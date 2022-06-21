@@ -23,7 +23,7 @@ spec:
       source:
         repoURL: {{ .Values.spec.source.repoURL }}
         targetRevision: HEAD
-        path: .
+        path: ./
         helm:
           valueFiles:
           - '{{"{{"}}filepath{{"}}"}}'
