@@ -1,0 +1,211 @@
+# Creating namespace
+{{ if .Values.namespaces }}
+
+{{ range $namespace := .Values.namespaces }}
+
+{{ $sufix := "default" }}
+
+{{ if $.Values.nodeSelectorNS }}
+{{ range $sufixTemp := $.Values.nodeSelectorNS }}
+
+{{ if hasSuffix $sufixTemp $namespace }}
+
+{{ $sufix = $sufixTemp }}
+
+{{ end }}
+
+{{ end }}
+{{ end }}
+
+{{ if eq "default" $sufix }}
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ $namespace }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+    helm.sh/resource-policy: keep
+  labels:
+    argocd.argoproj.io/managed-by: devops
+{{ else }}
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ $namespace }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+    helm.sh/resource-policy: keep
+    openshift.io/node-selector: 'region=agora, zone={{$sufix}}'
+  labels:
+    argocd.argoproj.io/managed-by: devops
+
+{{ end }}
+
+{{ end }}
+{{ end }}
+
+# Creating anyuid rolebiding
+{{ if and .Values.namespaces .Values.anyuidRoleAllNS }}
+{{ $anyuidRoleAllNS := .Values.anyuidRoleAllNS}}
+{{ range $namespace := .Values.namespaces }}
+{{ if $anyuidRoleAllNS }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: system:openshift:scc:anyuid
+  namespace: {{ $namespace }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "6"
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: system:openshift:scc:anyuid
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: {{ $namespace }}
+{{ end }}
+{{ end }}
+{{ end }}
+
+# Creating delete role
+{{ if and .Values.namespaces .Values.sufixNSApplyRoleDelete }}
+{{ $sufixes := .Values.sufixNSApplyRoleDelete }}
+{{ range $namespace := .Values.namespaces }}
+{{ range $sufix := $sufixes }}
+{{ if hasSuffix $sufix $namespace }}
+---
+apiVersion: v1
+items:
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: Role
+  metadata: 
+    name: podDeleteRole
+    namespace: {{ $namespace }}
+    annotations:
+      argocd.argoproj.io/sync-wave: "5"
+  rules:
+  - apiGroups:
+    - ""
+    resources:
+    - pods/attach
+    - pods/exec
+    verbs:
+    - get
+    - list
+    - watch
+  - apiGroups:
+    - ""
+    resources:
+    - pods
+    - pods/attach
+    - pods/exec
+    verbs:
+    - create
+    - delete
+    - deletecollection
+    - patch
+    - update
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""
+{{ end }}
+{{ end }}
+{{ end }}
+{{ end }}
+
+# Creating edit role
+{{ if and .Values.namespaces .Values.sufixNSApplyRoleEdit }}
+{{ $sufixes := .Values.sufixNSApplyRoleEdit }}
+{{ range $namespace := .Values.namespaces }}
+{{ range $sufix := $sufixes }}
+{{ if hasSuffix $sufix $namespace }}
+---
+apiVersion: v1
+items:
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: Role
+  metadata: 
+    name: editNamespaceRole
+    namespace: {{ $namespace }}
+    annotations:
+      argocd.argoproj.io/sync-wave: "5"
+  rules:
+  - apiGroups:
+    - ""
+    resources:
+    - namespace
+    verbs:
+    - get
+    - list
+    - watch
+    - patch
+    - update
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""
+
+{{ end }}
+{{ end }}
+{{ end }}
+{{ end }}
+
+# Creating delete rolebiding
+{{ if and .Values.namespaces .Values.sufixNSApplyRoleDelete }}
+{{ $sufixes := .Values.sufixNSApplyRoleDelete }}
+{{ range $namespace := .Values.namespaces }}
+{{ range $sufix := $sufixes }}
+{{ if hasSuffix $sufix $namespace }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: rb-podDeleteRole
+  namespace: {{ $namespace }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "6"
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: podDeleteRole
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: App_OCP_Developers_HO-FIX
+{{ end }}
+{{ end }}
+{{ end }}
+{{ end }}
+
+# Creating edit rolebiding
+{{ if and .Values.namespaces .Values.sufixNSApplyRoleEdit }}
+{{ $sufixes := .Values.sufixNSApplyRoleEdit }}
+{{ range $namespace := .Values.namespaces }}
+{{ range $sufix := $sufixes }}
+{{ if hasSuffix $sufix $namespace }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: rb-editNamespaceRole
+  namespace: {{ $namespace }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "6"
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: editNamespaceRole
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: App_OCP_Developers_HO-FIX
+
+{{ end }}
+{{ end }}
+{{ end }}
+{{ end }}

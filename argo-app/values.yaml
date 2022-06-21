@@ -1,0 +1,27 @@
+# Lista de namespaces a serem criados. Executar uma vez para criar os namespaces e depois criar os demais itens
+namespaces: 
+  - ns-ti
+  - ns-th
+  - ns-tu
+  - ns-fix
+  - ns
+
+# Lista de sufixos que serão aplicados como zonas
+nodeSelectorNS:
+  - ti
+  - tu
+  - ho
+  - fix
+ 
+# Se true, a lista de Namespaces toda receberá anyuid, independentemente do sufixo
+anyuidRoleAllNS: false
+
+# Lista de Namespaces que grupo  receberá permissão de deleção de Pods - por sufixo
+sufixNSApplyRoleDelete: 
+  - th
+  - fix
+
+# Lista de Namespaces que grupo App_OCP_Developers_HO-FIX receberá permissão de edição - por sufixo
+sufixNSApplyRoleEdit: 
+  - tu
+  - ti
