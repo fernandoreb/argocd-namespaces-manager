@@ -7,12 +7,11 @@ spec:
   generators:
   - list:
       elements:
-        - filepath: argo-app/values.yaml
-          appname: "argoapp"
-
+      - filepath: argo-app/values.yaml
+        name: "argo-app"
   template:
-    metadata:
-      name: '{{appname}}-namespace-config'
+    metadata: 
+      name: '{{"{{"}}name{{"}}"}}-namespace-config'
     spec:
       project: default
       syncPolicy:
@@ -27,7 +26,7 @@ spec:
         path: argo-app
         helm:
           valueFiles:
-          - '{{filepath}}'
+          - '{{"{{"}}filepath{{"}}"}}'
       destination:
         server: {{ .Values.spec.destination.server }}
         namespace: devops

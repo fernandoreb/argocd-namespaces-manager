@@ -1,5 +1,5 @@
 apiVersion: v2
-name: Agora - Namespaces Manager
+name: helm-namespace-config
 description: Gestão de Namespaces
 type: application
 version: 0.1.0
