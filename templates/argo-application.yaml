@@ -26,7 +26,7 @@ template:
       path: argo-app
       helm:
         valueFiles:
-        - '.'
+        - '{{filepath}}'
     destination:
       server: {{ .Values.spec.destination.server }}
       namespace: devops
