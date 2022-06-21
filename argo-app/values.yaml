@@ -14,7 +14,7 @@ nodeSelectorNS:
   - fix
  
 # Se true, a lista de Namespaces toda receberá anyuid, independentemente do sufixo
-anyuidRoleAllNS: false
+anyuidRoleAllNS: true
 
 # Lista de Namespaces que grupo  receberá permissão de deleção de Pods - por sufixo
 sufixNSApplyRoleDelete: 
