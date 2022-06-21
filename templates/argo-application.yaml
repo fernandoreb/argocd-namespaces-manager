@@ -12,6 +12,7 @@ spec:
       - CreateNamespace=true
   destination:
     server: {{ .Values.spec.destination.server }}
+    namespace: devops
   project: default
   source:
     path: argo-app
