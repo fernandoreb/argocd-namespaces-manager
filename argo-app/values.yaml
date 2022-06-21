@@ -1,10 +1,10 @@
 # Lista de namespaces a serem criados. Executar uma vez para criar os namespaces e depois criar os demais itens
 namespaces: 
-  - ns-ti
-  - ns-th
-  - ns-tu
-  - ns-fix
-  - ns
+#  - ns-ti
+#  - ns-th
+#  - ns-tu
+#  - ns-fix
+#  - ns
 
 # Lista de sufixos que serão aplicados como zonas
 nodeSelectorNS:
