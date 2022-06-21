@@ -65,12 +65,8 @@ Create the name of the service account to use
 Common labels
 */}}
 {{- define "argoteste.labels" -}}
-app.kubernetes.io/name: argoteste
-app.kubernetes.io/group: argoteste
-helm.sh/chart: argoteste
 helm.sh/resource-policy: keep
-app.kubernetes.io/instance: argoteste
-app.kubernetes.io/managed-by: devops
+app.kubernetes.io/managed-by: argocd-argocd-server
 {{- end -}}
 
 {{/*
@@ -78,6 +74,4 @@ Common annotations
 */}}
 {{- define "argoteste.annotations" -}}
 openshift.io/generated-by: RedHatConsultingTeam
-meta.helm.sh/release-name: argoteste
-meta.helm.sh/release-namespace: devops
 {{- end -}}
