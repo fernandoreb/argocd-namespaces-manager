@@ -61,7 +61,6 @@ metadata:
   namespace: {{ $namespace }}
   annotations:
     argocd.argoproj.io/sync-wave: "6"
-{{ include "argo-teste.annotations" . | indent 4 }}    
   labels:
     argocd.argoproj.io/managed-by: devops
 {{ include "argo-teste.labels" . | indent 4 }}
