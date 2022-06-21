@@ -60,3 +60,26 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Common labels
+*/}}
+{{- define "argo-teste.labels" -}}
+app.kubernetes.io/name: {{ include "argo-teste.name" . }}
+app.kubernetes.io/group: argo-teste
+helm.sh/chart: {{ include "argo-teste.chart" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- end -}}
+
+{{/*
+Common annotations
+*/}}
+{{- define "argo-teste.annotations" -}}
+openshift.io/generated-by: RedHatConsultingTeam
+meta.helm.sh/release-name: {{ .Release.Service }}
+meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+{{- end -}}
