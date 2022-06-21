@@ -65,14 +65,12 @@ Create the name of the service account to use
 Common labels
 */}}
 {{- define "argoteste.labels" -}}
-app.kubernetes.io/name: {{ include "argoteste.name" . }}
+app.kubernetes.io/name: argoteste
 app.kubernetes.io/group: argoteste
-helm.sh/chart: {{ include "argoteste.chart" . }}
-app.kubernetes.io/instance: {{ .Release.Name }}
-{{- if .Chart.AppVersion }}
-app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
-{{- end }}
-app.kubernetes.io/managed-by: {{ .Release.Service }}
+helm.sh/chart: argoteste
+helm.sh/resource-policy: keep
+app.kubernetes.io/instance: argoteste
+app.kubernetes.io/managed-by: devops
 {{- end -}}
 
 {{/*
@@ -80,6 +78,6 @@ Common annotations
 */}}
 {{- define "argoteste.annotations" -}}
 openshift.io/generated-by: RedHatConsultingTeam
-meta.helm.sh/release-name: {{ .Release.Service }}
-meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+meta.helm.sh/release-name: argoteste
+meta.helm.sh/release-namespace: devops
 {{- end -}}

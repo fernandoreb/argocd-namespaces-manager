@@ -25,9 +25,8 @@ metadata:
   name: {{ $namespace }}
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
-    helm.sh/resource-policy: keep
+{{ include "argoteste.annotations" . | indent 4 }}    
   labels:
-    argocd.argoproj.io/managed-by: devops
 {{ include "argoteste.labels" . | indent 4 }}
 
 {{ else }}
@@ -38,10 +37,9 @@ metadata:
   name: {{ $namespace }}
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
-    helm.sh/resource-policy: keep
     openshift.io/node-selector: 'region=agora, zone={{$sufix}}'
+{{ include "argoteste.annotations" . | indent 4 }}    
   labels:
-    argocd.argoproj.io/managed-by: devops
 {{ include "argoteste.labels" . | indent 4 }}
 {{ end }}
 
@@ -61,8 +59,8 @@ metadata:
   namespace: {{ $namespace }}
   annotations:
     argocd.argoproj.io/sync-wave: "6"
+{{ include "argo-teste.annotations" . | indent 4 }}    
   labels:
-    argocd.argoproj.io/managed-by: devops
 {{ include "argo-teste.labels" . | indent 4 }}
 
 roleRef:
