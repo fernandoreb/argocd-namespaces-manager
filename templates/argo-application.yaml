@@ -7,11 +7,12 @@ spec:
   generators:
   - list:
       elements:
-      - filepath: argo-app/values.yaml
-        name: argo-app
+        - filepath: argo-app/values.yaml
+          appname: "argoapp"
+
   template:
     metadata:
-      name: '{{name}}-namespace-config'
+      name: '{{appname}}-namespace-config'
     spec:
       project: default
       syncPolicy:
