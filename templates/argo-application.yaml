@@ -1,19 +1,32 @@
 apiVersion: argoproj.io/v1alpha1
-kind: Application
+kind: ApplicationSet
 metadata:
-  name: argo-app
+  name: namespace-config
   namespace: devops
 spec:
-  syncPolicy:
-    automated:
-      prune: false
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
-  destination:
-    server: {{ .Values.spec.destination.server }}
-    namespace: devops
-  project: default
-  source:
-    path: argo-app
-    repoURL: {{ .Values.spec.source.repoURL }}
+generators:
+- list:
+    elements:
+    - filepath: argo-app/values.yaml
+      name: argo-app
+template:
+  metadata:
+    name: '{{name}}-namespace-config'
+  spec:
+    project: default
+    syncPolicy:
+      automated:
+        prune: false
+        selfHeal: true
+      syncOptions:
+        - CreateNamespace=true
+    source:
+      repoURL: {{ .Values.spec.source.repoURL }}
+      targetRevision: HEAD
+      path: argo-app
+      helm:
+        valueFiles:
+        - '.'
+    destination:
+      server: {{ .Values.spec.destination.server }}
+      namespace: devops
