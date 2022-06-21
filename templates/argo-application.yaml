@@ -5,7 +5,11 @@ metadata:
   namespace: devops
 spec:
   syncPolicy:
-    automated: {}
+      automated:
+        prune: false
+        selfHeal: true
+      syncOptions:
+        - CreateNamespace=true
   destination:
     server: {{ .Values.spec.destination.server }}
   project: default
