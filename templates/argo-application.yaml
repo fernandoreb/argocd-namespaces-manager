@@ -4,29 +4,29 @@ metadata:
   name: namespace-config
   namespace: devops
 spec:
-generators:
-- list:
-    elements:
-    - filepath: argo-app/values.yaml
-      name: argo-app
-template:
-  metadata:
-    name: '{{name}}-namespace-config'
-  spec:
-    project: default
-    syncPolicy:
-      automated:
-        prune: false
-        selfHeal: true
-      syncOptions:
-        - CreateNamespace=true
-    source:
-      repoURL: {{ .Values.spec.source.repoURL }}
-      targetRevision: HEAD
-      path: argo-app
-      helm:
-        valueFiles:
-        - '{{filepath}}'
-    destination:
-      server: {{ .Values.spec.destination.server }}
-      namespace: devops
+  generators:
+  - list:
+      elements:
+      - filepath: argo-app/values.yaml
+        name: argo-app
+  template:
+    metadata:
+      name: '{{name}}-namespace-config'
+    spec:
+      project: default
+      syncPolicy:
+        automated:
+          prune: false
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+      source:
+        repoURL: {{ .Values.spec.source.repoURL }}
+        targetRevision: HEAD
+        path: argo-app
+        helm:
+          valueFiles:
+          - '{{filepath}}'
+      destination:
+        server: {{ .Values.spec.destination.server }}
+        namespace: devops
