@@ -1,10 +1,10 @@
 # Lista de namespaces a serem criados. Executar uma vez para criar os namespaces e depois criar os demais itens
 namespaces: 
-#  - ns-ti
-#  - ns-th
-#  - ns-tu
-#  - ns-fix
-#  - ns
+  - ns-ti
+  - ns-th
+  - ns-tu
+  - ns-fix
+  - ns
 
 # Lista de sufixos que serão aplicados como zonas
 nodeSelectorNS:
@@ -14,7 +14,7 @@ nodeSelectorNS:
   - fix
  
 # Se true, a lista de Namespaces toda receberá anyuid, independentemente do sufixo
-anyuidRoleAllNS: false
+anyuidRoleAllNS: true
 
 # Lista de Namespaces que grupo  receberá permissão de deleção de Pods - por sufixo
 sufixNSApplyRoleDelete: 
