@@ -64,10 +64,10 @@ Create the name of the service account to use
 {{/*
 Common labels
 */}}
-{{- define "argo-teste.labels" -}}
-app.kubernetes.io/name: {{ include "argo-teste.name" . }}
-app.kubernetes.io/group: argo-teste
-helm.sh/chart: {{ include "argo-teste.chart" . }}
+{{- define "argoteste.labels" -}}
+app.kubernetes.io/name: {{ include "argoteste.name" . }}
+app.kubernetes.io/group: argoteste
+helm.sh/chart: {{ include "argoteste.chart" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
@@ -78,7 +78,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Common annotations
 */}}
-{{- define "argo-teste.annotations" -}}
+{{- define "argoteste.annotations" -}}
 openshift.io/generated-by: RedHatConsultingTeam
 meta.helm.sh/release-name: {{ .Release.Service }}
 meta.helm.sh/release-namespace: {{ .Release.Namespace }}
