@@ -25,9 +25,8 @@ metadata:
   name: {{ $namespace }}
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
-{{ include "argoteste.annotations" . | indent 4 }}    
   labels:
-{{ include "argoteste.labels" . | indent 4 }}
+    argocd.argoproj.io/managed-by: devops
 
 {{ else }}
 ---
@@ -36,11 +35,11 @@ kind: Namespace
 metadata:
   name: {{ $namespace }}
   annotations:
-    argocd.argoproj.io/sync-wave: "-1"
     openshift.io/node-selector: 'region=agora, zone={{$sufix}}'
-{{ include "argoteste.annotations" . | indent 4 }}    
+    argocd.argoproj.io/sync-wave: "-1"
   labels:
-{{ include "argoteste.labels" . | indent 4 }}
+    argocd.argoproj.io/managed-by: devops
+
 {{ end }}
 
 {{ end }}
@@ -59,10 +58,6 @@ metadata:
   namespace: {{ $namespace }}
   annotations:
     argocd.argoproj.io/sync-wave: "0"
-{{ include "argoteste.annotations" . | indent 4 }}    
-  labels:
-{{ include "argoteste.labels" . | indent 4 }}
-
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole

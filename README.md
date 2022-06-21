@@ -56,7 +56,7 @@ $ argocd repo add https://github.com/fernandoreb/argocd-namespaces-manager.git -
 
 Criação da aplicação:
 ```
-$ argocd app create argocd-teste --dest-server https://kubernetes.default.svc --repo https://github.com/fernandoreb/argocd-namespaces-manager.git --path . --sync-policy automated
+$ argocd app create argo-teste --dest-server https://kubernetes.default.svc --repo https://github.com/fernandoreb/argocd-namespaces-manager.git --path . --sync-policy automated
 ```
 
 Forçar uma sincronização
