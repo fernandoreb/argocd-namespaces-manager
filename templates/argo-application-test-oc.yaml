@@ -11,7 +11,7 @@ spec:
         url: https://github.com/fernandoreb/argocd-namespaces-manager
   template:
     metadata: 
-      name: '{{name}}-namespace-config'
+      name: '{{"{{name}}"}}-namespace-config'
     spec:
       project: default
       syncPolicy:
@@ -23,7 +23,7 @@ spec:
       source:
         repoURL: '{{url}}'
         targetRevision: HEAD
-        path: '{{filepath}}'
+        path: '{{"{{filepath}}"}}'
       destination:
         server: https://kubernetes.default.svc
         namespace: cnd-devops
