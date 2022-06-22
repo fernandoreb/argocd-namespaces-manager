@@ -26,4 +26,4 @@ spec:
         path: '{{filepath}}'
       destination:
         server: https://kubernetes.default.svc
-        namespace: devops
+        namespace: cnd-devops

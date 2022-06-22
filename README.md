@@ -44,8 +44,8 @@ https://github.com/argoproj/argo-cd/issues/5886
 Login no ArgoCD
 ```
 bash
-$ ARGOCD_ROUTE=$(oc -n devops get route argocd-server -o jsonpath='{.spec.host}')
-$ ADMIN_PASSWORD=$(oc get secret/argocd-cluster -n devops --template='{{index .data "admin.password" | base64decode}}')
+$ ARGOCD_ROUTE=$(oc -n cnd-devops get route argocd-server -o jsonpath='{.spec.host}')
+$ ADMIN_PASSWORD=$(oc get secret/argocd-cluster -n cnd-devops --template='{{index .data "admin.password" | base64decode}}')
 $ argocd login ${ARGOCD_ROUTE}:443 --insecure --username=admin --password=${ADMIN_PASSWORD}
 ```
 
