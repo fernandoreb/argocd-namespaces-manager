@@ -26,7 +26,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
   labels:
-    argocd.argoproj.io/managed-by: devops
+    argocd.argoproj.io/managed-by: cnd-devops
 
 {{ else }}
 ---
@@ -38,7 +38,7 @@ metadata:
     openshift.io/node-selector: 'region=agora, zone={{$sufix}}'
     argocd.argoproj.io/sync-wave: "-1"
   labels:
-    argocd.argoproj.io/managed-by: devops
+    argocd.argoproj.io/managed-by: cnd-devops
 
 {{ end }}
 

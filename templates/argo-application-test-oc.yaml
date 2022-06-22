@@ -2,28 +2,28 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: namespace-config
-  namespace: devops
 spec:
   generators:
   - list:
       elements:
       - filepath: argo-app
-        name: "argo-app"
+        name: argo-app
+        url: https://github.com/fernandoreb/argocd-namespaces-manager
   template:
     metadata: 
-      name: '{{"{{"}} name {{"}}"}}-namespace-config'
+      name: '{{name}}-namespace-config'
     spec:
       project: default
       syncPolicy:
         automated:
-          prune: false
+          prune: true
           selfHeal: true
         syncOptions:
           - CreateNamespace=true
       source:
-        repoURL: {{ .Values.spec.source.repoURL }}
+        repoURL: '{{url}}'
         targetRevision: HEAD
-        path: '{{"{{"}} filepath {{"}}"}}'
+        path: '{{filepath}}'
       destination:
-        server: {{ .Values.spec.destination.server }}
+        server: https://kubernetes.default.svc
         namespace: devops

@@ -58,7 +58,6 @@ Criação da aplicação:
 ```
 $ argocd app create argo-teste --dest-server https://kubernetes.default.svc --repo https://github.com/fernandoreb/argocd-namespaces-manager.git --path . --sync-policy automated
 ```
-
 Forçar uma sincronização
 ```
 argocd app sync apps
