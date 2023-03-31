@@ -1,43 +1,14 @@
+# Gitops - ArgoCD para gestão de Namespaces
+
+Openshift: 4.12
+
+## Motivação
+
+Normalmente as namespaces 
+
 # Instalação
 
 Instalar o **Operator Red Hat OpenShift GitOps**
-
-Criar um namespace e adicionar uma instância do ArgoCD
-
-exemplo:
-
-```
-oc new-project devops
-```
-
-Criar a *Role* abaixo para as permissões dos *Services Accounts* poderem manipular Namespaces
-
-```
-oc create -f roles/namespace-role.yaml -n devops
-```
-
-Criar os *Bindings* para cara um dos *Services Accounts*
-
-```
-oc create -f roles/namespace-role-binding-server.yaml -n devops
-```
-
-```
-oc create -f roles/namespace-role-binding.yaml -n devops
-```
-
-Secret no projeto onde está o ArgoCD: 
-```
-argocd-default-cluster-config
-```
-
-Adicionar a chave/valor abaixo para permitir o ArgoCD realizar ajustes em namespaces
-
-```
-clusterResources: true
-```
-Referência
-https://github.com/argoproj/argo-cd/issues/5886
 
 ## Criação da aplicação de manutenção de namespaces: 
 
