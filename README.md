@@ -2,6 +2,9 @@
 
 Demostração de como utilizar o ArgoCD para gestionar namespaces com Openshift
 
+Sobre o ArgoCD   
+https://argoproj.github.io/
+
 ## Motivação
 
 As vezes não queremos deixar a cargo dos times de desenvolvimento a criação de namespace, Storage Claim, Roles e outros recursos do cluster.  
@@ -119,3 +122,16 @@ Adicione as informações do repo e Connect. Pode-se utilizar um repo privado, b
 
 No final o repositório será adicionado com sucesso.
 ![Solução](./assets/img05.png)
+
+#### Criando a aplicação de gestão de namespaces no ArgoCD
+
+Selecione Applications e New App
+![Solução](./assets/img06.png)
+
+Preencha de acordo com as images e clique em create
+![Solução](./assets/img07.png)
+![Solução](./assets/img08.png)
+
+
+No final, teremos algo como:
+![Solução](./assets/img09.png)
