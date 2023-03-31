@@ -1,0 +1,16 @@
+# Lista de namespaces a serem criados. Executar uma vez para criar os namespaces e depois criar os demais itens
+namespaces:
+  - application-dev
+
+# Lista de sufixos que serão aplicados como zonas
+nodeSelectorNS:
+  - dev
+  - hmg
+  - prd
+
+pvcsByNS:
+  - namespace: application-dev
+    pvcname: pvc-teste
+    size: 1Gi
+    accessMode: ReadWriteOnce
+    storageClassName: default

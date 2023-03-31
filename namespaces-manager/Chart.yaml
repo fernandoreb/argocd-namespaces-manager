@@ -1,5 +1,5 @@
 apiVersion: v2
-name: argoteste
+name: namespaces-manager-gitops
 description: Gestão de Namespaces
 type: application
 version: 0.1.0

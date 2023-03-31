@@ -1,0 +1,20 @@
+{{ if .Values.pvcsByNS }}
+{{ range $pvcsByNS := .Values.pvcsByNS }}
+---
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ $pvcsByNS.pvcname }}
+  namespace: {{ $pvcsByNS.namespace }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  storageClassName: {{ $pvcsByNS.storageClassName }}
+  accessModes:
+    - {{ $pvcsByNS.accessMode }}
+  resources:
+    requests:
+      storage: {{ $pvcsByNS.size }}
+{{ end }}
+{{ end }}
