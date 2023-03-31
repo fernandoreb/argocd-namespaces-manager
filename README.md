@@ -135,3 +135,41 @@ Preencha de acordo com as images e clique em create
 
 No final, teremos algo como:
 ![Solução](./assets/img09.png)
+
+Se olharmos no cluster veremos os projetos criados:
+![Solução](./assets/img10.png)
+
+Se pegarmos o yaml de criação da namespace, podermos ver a zona definida:
+
+node-selector: zone=dev
+~~~
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: area-a-apps-dev
+  uid: 3898a937-1ee5-4436-b522-4b1ae457f9ff
+  resourceVersion: '1753385'
+  creationTimestamp: '2023-03-31T20:23:45Z'
+  labels:
+    app.kubernetes.io/instance: namespaces-area-a
+    argocd.argoproj.io/managed-by: openshift-gitops
+    kubernetes.io/metadata.name: area-a-apps-dev
+    pod-security.kubernetes.io/audit: restricted
+    pod-security.kubernetes.io/audit-version: v1.24
+    pod-security.kubernetes.io/warn: restricted
+    pod-security.kubernetes.io/warn-version: v1.24
+  annotations:
+    helm.sh/resource-policy: keep
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"v1","kind":"Namespace","metadata":{"annotations":{"helm.sh/resource-policy":"keep","openshift.io/node-selector":"zone=dev"},"labels":{"app.kubernetes.io/instance":"namespaces-area-a","argocd.argoproj.io/managed-by":"openshift-gitops"},"name":"area-a-apps-dev"}}
+    openshift.io/node-selector: zone=dev
+    openshift.io/sa.scc.mcs: 's0:c27,c4'
+    openshift.io/sa.scc.supplemental-groups: 1000710000/10000
+    openshift.io/sa.scc.uid-range: 1000710000/10000
+...
+~~~
+
+
+No final, teremos algo como:
+![Solução](./assets/img11.png)
+
