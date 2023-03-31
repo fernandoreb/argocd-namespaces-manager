@@ -1,5 +1,5 @@
 apiVersion: v2
-name: namespaces-manager-gitops
+name: namespaces-area-a
 description: Gestão de Namespaces
 type: application
 version: 0.1.0

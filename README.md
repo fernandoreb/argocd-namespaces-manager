@@ -4,7 +4,8 @@ Openshift: 4.12
 
 ## Motivação
 
-Normalmente as namespaces 
+As vezes não queremos deixar a cargo dos times de desenvolvimento a criação de namespace, Storage Claim e outros recursos do cluster como Roles. 
+Podemos utilizar o ArgoCD para fazer essa adminstração, criando uma ou mais aplicações no Argo, para fazer a gestão de namespaces.
 
 # Instalação
 

@@ -1,0 +1,45 @@
+{{ if .Values.namespaces }}
+
+{{ range $namespace := .Values.namespaces }}
+
+{{ $sufix := "default" }}
+
+{{ if $.Values.nodeSelectorNS }}
+{{ range $sufixTemp := $.Values.nodeSelectorNS }}
+
+{{ if hasSuffix $sufixTemp $namespace }}
+
+{{ $sufix = $sufixTemp }}
+
+{{ end }}
+
+{{ end }}
+{{ end }}
+
+{{ if eq "default" $sufix }}
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ $namespace }}
+  annotations:
+    helm.sh/resource-policy: keep
+  labels:
+{{ include "argocd-applications-manager.defaultLabels" . | indent 4 }}  
+{{ else }}
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ $namespace }}
+  annotations:
+    helm.sh/resource-policy: keep
+    openshift.io/node-selector: 'zone={{$sufix}}'
+  labels:
+{{ include "argocd-applications-manager.defaultLabels" . | indent 4 }}  
+
+{{ end }}
+
+{{ end }}
+{{ end }}
+
