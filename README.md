@@ -137,7 +137,7 @@ No final, teremos algo como:
 ![Solução](./assets/img09.png)
 
 Se olharmos no cluster veremos os projetos criados:
-![Solução](./assets/img10.png)
+![Solução](./assets/img11.png)
 
 Se pegarmos o yaml de criação da namespace, podermos ver a zona definida:
 
@@ -147,9 +147,7 @@ kind: Namespace
 apiVersion: v1
 metadata:
   name: area-a-apps-dev
-  uid: 3898a937-1ee5-4436-b522-4b1ae457f9ff
-  resourceVersion: '1753385'
-  creationTimestamp: '2023-03-31T20:23:45Z'
+
   labels:
     app.kubernetes.io/instance: namespaces-area-a
     argocd.argoproj.io/managed-by: openshift-gitops
@@ -169,7 +167,11 @@ metadata:
 ...
 ~~~
 
+Se olharmos no argo, veremos os detalhes dos artefatos criados:
+![Solução](./assets/img10.png)
 
-No final, teremos algo como:
-![Solução](./assets/img11.png)
+Podermos alterar o arquivo de values de cada área, adicionando ou removendo as namespaces, ficando a cargo do Argo a gestão e atualização.
 
+## Conclusões
+
+Utilizar o ArgoCD para gestionar as namespaces e recursos compartilhados por mais de um time ajudará a uma melhor gestão dos artefatos, além de se utilizar uma boa prática de GitOps.
