@@ -13,4 +13,4 @@ pvcsByNS:
     pvcname: pvc-teste
     size: 1Gi
     accessMode: ReadWriteOnce
-    storageClassName: default
+    storageClassName: crc-csi-hostpath-provisioner
