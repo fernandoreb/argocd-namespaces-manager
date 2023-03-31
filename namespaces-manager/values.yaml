@@ -1,6 +1,6 @@
 # Lista de namespaces a serem criados. Executar uma vez para criar os namespaces e depois criar os demais itens
 namespaces:
-  - application-dev
+  - application
 
 # Lista de sufixos que serão aplicados como zonas
 nodeSelectorNS:
