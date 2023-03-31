@@ -9,7 +9,7 @@ nodeSelectorNS:
   - prd
 
 pvcsByNS:
-  - namespace: application-dev
+  - namespace: application
     pvcname: pvc-teste
     size: 1Gi
     accessMode: ReadWriteOnce
